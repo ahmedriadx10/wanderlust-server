@@ -77,6 +77,33 @@ console.log(exactDestination)
 
 })
 
+
+
+// destination update one 
+
+app.patch('/destinations/:id',async(req,res)=>{
+
+  const {id}=req.params
+  const updatedData=req.body
+const query={
+  _id:new ObjectId(id)
+}
+
+const result=await destinationsCollection.updateOne(query,{
+  $set:{...updatedData}
+})
+
+
+
+console.log(result)
+
+res.send(result)
+
+})
+
+
+
+
   } finally {
     // await client.close()
   }
